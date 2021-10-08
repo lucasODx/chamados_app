@@ -13,7 +13,6 @@ class Tickets extends CI_Controller
 		}
 		$tickets = $this->chamados_model->tickets($userId, $role);
 		$tickets['data'] = $tickets;
-
 		$this->load->view('tickets', $tickets);
 	}
 
@@ -39,9 +38,11 @@ class Tickets extends CI_Controller
 	{
 		$this->load->model("chamados_model");
 		$ticket = $this->chamados_model->readTicket($ticketId);
+		$answers = $this->pegarRespostas($ticketId);
+
 		$ticket['data'] = $ticket;
+		$ticket['answers'] = $answers;
 		$this->load->view('ticket', $ticket);
-		$this->pegarRespostas($ticketId);
 	}
 
 	public function responder($ticketId)
@@ -63,7 +64,6 @@ class Tickets extends CI_Controller
 	{
 		$this->load->model("chamados_model");
 		$answers = $this->chamados_model->readAnswers($ticketId);
-		$answers['answers'] = $answers;
-		$this->load->view('ticket', $answers);
+		return $answers;
 	}
 }

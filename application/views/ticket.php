@@ -9,8 +9,6 @@
 </head>
 
 <body>
-    
-<?php print_r($answers)?>
     <div>
         <?php foreach ($data as $dt) : ?>
             <h2>Chamado n°<?= $dt['id'] ?>: <?= $dt['title'] ?>
