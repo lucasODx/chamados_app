@@ -42,15 +42,36 @@
                 <?php foreach ($data[0] as $dt) : ?>
                     <tr>
                         <td><?= $dt['id'] ?></td>
-                        <td><?= $dt['title'] ?></td>
+                        <td>
+                            <?= $dt['title'] ?>
+                        </td>
                         <td><?= $dt['status'] ?></td>
+                        <td>
+                            <?php
+                            echo form_open("/tickets/ler/" . $dt['id']);
+                            echo form_button(array(
+                                "class" => "btn btn-primary",
+                                "type" => "submit",
+                                "content" => "Visualizar"
+                            ));
+                            echo form_close();
+
+                            echo form_open("/tickets/fechar/" . $dt['id']);
+                            echo form_button(array(
+                                "class" => "btn btn-danger",
+                                "type" => "submit",
+                                "content" => "Fechar"
+                            ));
+                            echo form_close();
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </table>
 
             <br />
 
-            <h1>Open tickets</h1>
+            <h1>Opened tickets</h1>
             <table class="table">
                 <tr class="main_row">
                     <th>Id</th>
@@ -63,6 +84,17 @@
                         <td><?= $dt['id'] ?></td>
                         <td><?= $dt['title'] ?></td>
                         <td><?= $dt['status'] ?></td>
+                        <td>
+                            <?php
+                            echo form_open("/tickets/aceitar/" . $dt['id']);
+                            echo form_button(array(
+                                "class" => "btn btn-primary",
+                                "type" => "submit",
+                                "content" => "Aceitar"
+                            ));
+                            echo form_close();
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </table>
