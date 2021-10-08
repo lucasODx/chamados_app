@@ -10,22 +10,63 @@
 
 <body>
     <div class="container">
-        <h1>Your tickets</h1>
-        <table class="table">
-            <tr class="main_row">
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Status</th>
-            </tr>
-
-            <?php foreach ($data as $dt) : ?>
-                <tr>
-                    <td><?= $dt['id'] ?></td>
-                    <td><?= $dt['title'] ?></td>
-                    <td><?= $dt['status'] ?></td>
+        <?php if ($data[0] == 'cliente') : ?>
+            <h1>Your tickets</h1>
+            <table class="table">
+                <tr class="main_row">
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Status</th>
                 </tr>
-            <?php endforeach ?>
-        </table>
+
+                <?php foreach ($data[1] as $dt) : ?>
+                    <tr>
+                        <td><?= $dt['id'] ?></td>
+                        <td><?= $dt['title'] ?></td>
+                        <td><?= $dt['status'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+
+        <?php endif ?>
+
+        <?php if ($data[0] !== 'cliente') : ?>
+            <h1>Your tickets</h1>
+            <table class="table">
+                <tr class="main_row">
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                </tr>
+
+                <?php foreach ($data[0] as $dt) : ?>
+                    <tr>
+                        <td><?= $dt['id'] ?></td>
+                        <td><?= $dt['title'] ?></td>
+                        <td><?= $dt['status'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+
+            <br />
+
+            <h1>Open tickets</h1>
+            <table class="table">
+                <tr class="main_row">
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                </tr>
+
+                <?php foreach ($data[1] as $dt) : ?>
+                    <tr>
+                        <td><?= $dt['id'] ?></td>
+                        <td><?= $dt['title'] ?></td>
+                        <td><?= $dt['status'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        <?php endif ?>
     </div>
 </body>
 
