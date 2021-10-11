@@ -70,7 +70,6 @@ class Chamados_Model extends CI_Model
     {
         $this->db->where('ticket_id', $ticketId);
         $answersFromTicket = $this->db->get('ticket_answers')->result_array();
-        $answersFromTicket[0] = $answersFromTicket;
         return $answersFromTicket;
     }
 }

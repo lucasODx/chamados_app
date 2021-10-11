@@ -13,8 +13,12 @@
         <?php foreach ($data as $dt) : ?>
             <h2>Chamado n°<?= $dt['id'] ?>: <?= $dt['title'] ?>
             <?php endforeach ?>
+           
     </div>
-    <div style="margin-top: 30px;
+    <div style="display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin-top: 30px;
                 margin-bottom: 10px;
                 border-radius: 10px;
                 background-color: #f2f2f2; 
@@ -24,6 +28,7 @@
                 overflow-x: hidden;">
         <?php foreach ($answers as $ans) : ?>
             <p style="word-break: break-all;
+                  width: 250px;
                   margin: 10px;
                   padding: 5px;
                   color: #f5f5f5;
