@@ -37,11 +37,17 @@ class Tickets extends CI_Controller
 	public function ler($ticketId)
 	{
 		$this->load->model("chamados_model");
+		$userId = $this->session->userdata;
+		foreach ($userId as $usr) {
+			$userId = $usr['userId'];
+		}
+
 		$ticket = $this->chamados_model->readTicket($ticketId);
 		$answers = $this->pegarRespostas($ticketId);
 
 		$ticket['data'] = $ticket;
 		$ticket['answers'] = $answers;
+		$ticket['userId'] = $userId;
 		$this->load->view('ticket', $ticket);
 	}
 
@@ -52,12 +58,28 @@ class Tickets extends CI_Controller
 			$userId = $usr['userId'];
 		}
 
+		$this->load->model("chamados_model");
 		$answerFromUser = $this->input->post("textBox");
 
-		$this->load->model("chamados_model");
-		$this->chamados_model->answerTicket($ticketId, $answerFromUser, $userId);
+		if ($answerFromUser !== '') {
+			$this->chamados_model->answerTicket($ticketId, $answerFromUser, $userId, 'answer');
+			redirect('/tickets/ler/' . $ticketId);
+		} else {
+			$config["upload_path"] = "assets/images/";
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 2048;
+			$config['max_width']            = 1024;
+			$config['max_height']           = 768;
 
-		redirect('/tickets/ler/' . $ticketId);
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('pictureSend');
+			$answerFromUser = $this->upload->data()['file_name'];
+
+			if($answerFromUser){
+				$this->chamados_model->answerTicket($ticketId, $answerFromUser, $userId, 'picture');
+			}
+			redirect('/tickets/ler/' . $ticketId);
+		}
 	}
 
 	public function pegarRespostas($ticketId)

@@ -55,12 +55,13 @@ class Chamados_Model extends CI_Model
         return $data;
     }
 
-    public function answerTicket($ticketId, $answerFromUser, $userId)
+    public function answerTicket($ticketId, $answerFromUser, $userId, $answerType)
     {
         $data = array(
             'answers' => $answerFromUser,
             'ticket_id' => $ticketId,
-            'answer_user' => $userId
+            'answer_user' => $userId,
+            'type' => $answerType
         );
 
         $this->db->insert('ticket_answers', $data);

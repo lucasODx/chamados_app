@@ -24,6 +24,28 @@
                         <td><?= $dt['id'] ?></td>
                         <td><?= $dt['title'] ?></td>
                         <td><?= $dt['status'] ?></td>
+                        <td>
+                            <?php
+                            echo form_open("/tickets/ler/" . $dt['id']);
+                            echo form_button(array(
+                                "class" => "btn btn-primary",
+                                "type" => "submit",
+                                "content" => "Visualizar"
+                            ));
+
+                            echo form_close();
+                            
+                            if($dt['status'] !== 'fechado'){
+                                echo form_open("/tickets/fechar/" . $dt['id']);
+                            echo form_button(array(
+                                "class" => "btn btn-danger",
+                                "type" => "submit",
+                                "content" => "Fechar"
+                            ));
+                            echo form_close();
+                            }                            
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </table>
