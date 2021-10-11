@@ -16,6 +16,28 @@ class Tickets extends CI_Controller
 		$this->load->view('tickets', $tickets);
 	}
 
+	public function criar()
+	{
+		$this->load->view('createTicket');
+	}
+
+	public function criarTicket()
+	{
+		$userId = $this->session->userdata;
+		foreach ($userId as $usr) {
+			$userId = $usr['userId'];
+		}
+
+		$this->load->model("chamados_model");
+		$title = $this->input->post("title");
+		$description = $this->input->post("description");
+		$this->chamados_model->createTicket($title, $description, $userId);
+
+		$this->session->set_flashdata("success", "Ticket created successfully");
+		
+		redirect('/tickets/criar');
+	}
+
 	public function aceitar($ticketId)
 	{
 		$userId = $this->session->userdata;
@@ -75,7 +97,7 @@ class Tickets extends CI_Controller
 			$this->upload->do_upload('pictureSend');
 			$answerFromUser = $this->upload->data()['file_name'];
 
-			if($answerFromUser){
+			if ($answerFromUser) {
 				$this->chamados_model->answerTicket($ticketId, $answerFromUser, $userId, 'picture');
 			}
 			redirect('/tickets/ler/' . $ticketId);

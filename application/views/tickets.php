@@ -11,6 +11,16 @@
 <body>
     <div class="container">
         <?php if ($data[0] == 'cliente') : ?>
+            <?php
+                echo form_open('/tickets/criar');
+                echo form_button(array(
+                    "class" => "btn btn-primary",
+                    "type" => "submit",
+                    "content" => "Criar ticket"
+                ));
+                echo form_close();
+            ?>
+
             <h1>Your tickets</h1>
             <table class="table">
                 <tr class="main_row">
@@ -34,16 +44,16 @@
                             ));
 
                             echo form_close();
-                            
-                            if($dt['status'] !== 'fechado'){
+
+                            if ($dt['status'] !== 'fechado') {
                                 echo form_open("/tickets/fechar/" . $dt['id']);
-                            echo form_button(array(
-                                "class" => "btn btn-danger",
-                                "type" => "submit",
-                                "content" => "Fechar"
-                            ));
-                            echo form_close();
-                            }                            
+                                echo form_button(array(
+                                    "class" => "btn btn-danger",
+                                    "type" => "submit",
+                                    "content" => "Fechar"
+                                ));
+                                echo form_close();
+                            }
                             ?>
                         </td>
                     </tr>

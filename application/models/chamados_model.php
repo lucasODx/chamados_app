@@ -15,13 +15,32 @@ class Chamados_Model extends CI_Model
             $this->db->where("status", 'analisando');
             $acceptedTickets = $this->db->get("ticket")->result_array();
 
-            $this->db->where("!support");
+            $this->db->where("status like 'aberto'");
             $tickets = $this->db->get("ticket")->result_array();
 
             $data[0] = $acceptedTickets;
             $data[1] = $tickets;
         }
         return $data;
+    }
+
+    public function createTicket($title, $description, $userId){
+        $data = array(
+            'creator' => $userId,
+            'title' => $title,
+            'status' => 'aberto'
+        );
+
+        $this->db->insert('ticket', $data);
+
+        $ticket_data = array(
+            'answers' => $description,
+            'ticket_id' => $this->db->insert_id(),
+            'answer_user' => $userId,
+            'type' => 'answer'
+        );
+
+        $this->db->insert('ticket_answers', $ticket_data);        
     }
 
     public function acceptTicket($ticketId, $userId)
