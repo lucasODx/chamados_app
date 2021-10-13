@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
 
@@ -15,9 +16,9 @@
                 <?php
                 echo form_open('/tickets/chamados');
                 echo form_button(array(
-                    "class" => "btn btn-primary button_create",
+                    "class" => "btn btn-primary bi bi-arrow-left",
                     "type" => "submit",
-                    "content" => "Voltar"
+                    "content" => " Voltar"
                 ));
                 echo form_close();
                 ?>
@@ -94,13 +95,13 @@
                 echo '<input 
                     type="file"
                     action="/tickets/responder/" 
-                    name="pictureSend" 
+                    name="pictureSend"
                     size="20" />';
 
                 echo form_button(array(
-                    "class" => "btn btn-primary button_update",
+                    "class" => "btn btn-primary button_update bi bi-arrow-clockwise",
                     "type" => "submit",
-                    "content" => "Atualizar chamado"
+                    "content" => " Atualizar chamado"
                 ));
                 echo form_close();
             }

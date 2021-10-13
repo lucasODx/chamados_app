@@ -2,6 +2,7 @@
 
 <head>
     <link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.css") ?>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +16,9 @@
                 <?php
                 echo form_open('/login/deslogar');
                 echo form_button(array(
-                    "class" => "btn btn-secondary",
+                    "class" => "btn btn-secondary bi bi-arrow-left-square",
                     "type" => "submit",
-                    "content" => "Sair"
+                    "content" => " Sair"
                 ));
                 echo form_close();
                 ?>
@@ -27,9 +28,9 @@
                     <?php
                     echo form_open('/tickets/criar');
                     echo form_button(array(
-                        "class" => "btn btn-primary button-create",
+                        "class" => "btn btn-primary button-create bi-plus-circle",
                         "type" => "submit",
-                        "content" => "Criar ticket"
+                        "content" => " Criar ticket"
                     ));
                     echo form_close();
                     ?>
@@ -52,9 +53,8 @@
                                 <?php
                                 echo form_open("/tickets/ler/" . $dt['id']);
                                 echo form_button(array(
-                                    "class" => "btn btn-primary",
-                                    "type" => "submit",
-                                    "content" => "Visualizar"
+                                    "class" => "btn btn-primary bi bi-eye",
+                                    "type" => "submit"
                                 ));
 
                                 echo form_close();
@@ -62,9 +62,8 @@
                                 if ($dt['status'] !== 'fechado') {
                                     echo form_open("/tickets/fechar/" . $dt['id']);
                                     echo form_button(array(
-                                        "class" => "btn btn-danger",
-                                        "type" => "submit",
-                                        "content" => "Fechar"
+                                        "class" => "btn btn-danger bi bi-x-circle",
+                                        "type" => "submit"
                                     ));
                                     echo form_close();
                                 }
@@ -96,17 +95,15 @@
                                 <?php
                                 echo form_open("/tickets/ler/" . $dt['id']);
                                 echo form_button(array(
-                                    "class" => "btn btn-primary",
-                                    "type" => "submit",
-                                    "content" => "Visualizar"
+                                    "class" => "btn btn-primary bi bi-eye",
+                                    "type" => "submit"
                                 ));
                                 echo form_close();
 
                                 echo form_open("/tickets/fechar/" . $dt['id']);
                                 echo form_button(array(
-                                    "class" => "btn btn-danger",
-                                    "type" => "submit",
-                                    "content" => "Fechar"
+                                    "class" => "btn btn-success bi bi-check-square",
+                                    "type" => "submit"
                                 ));
                                 echo form_close();
                                 ?>
@@ -134,9 +131,9 @@
                                 <?php
                                 echo form_open("/tickets/aceitar/" . $dt['id']);
                                 echo form_button(array(
-                                    "class" => "btn btn-primary",
+                                    "class" => "btn btn-primary bi bi-arrow-bar-up",
                                     "type" => "submit",
-                                    "content" => "Aceitar"
+                                    "content" => " Aceitar"
                                 ));
                                 echo form_close();
                                 ?>
@@ -148,6 +145,9 @@
         </div>
         <style>
             .button_create {
+                float: right;
+            }
+            .bi bi-arrow-bar-up{
                 float: right;
             }
         </style>

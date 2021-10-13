@@ -7,6 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Ticket Plus</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="<?= base_url("assets/css/bootstrap.css") ?>" />
 	<link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +41,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		echo form_button(array(
 			"class" => "btn btn-primary",
 			"type" => "submit",
-			"content" => "Acessar"
+			"content" => " Acessar"
 		));
 
 		echo form_close();
