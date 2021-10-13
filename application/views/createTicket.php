@@ -64,6 +64,12 @@
                 <?
                 redirect('/tickets/chamados');
                 ?>
+                <?php elseif($this->session->flashdata("danger")) : ?>
+                    <p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+                    <?
+                    redirect('/tickets/chamados');
+                    ?>
+            
             <?php endif ?>
         </div>
     <?php else : ?>

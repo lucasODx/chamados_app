@@ -32,11 +32,16 @@ class Tickets extends CI_Controller
 		$title = $this->input->post("title");
 		$description = $this->input->post("description");
 
+		if($title && $description){
+			$this->chamados_model->createTicket($title, $description, $userId);
 
-		$this->chamados_model->createTicket($title, $description, $userId);
-
-		$this->session->set_flashdata("success", "Ticket created successfully");
-		redirect('/tickets/criar');
+			$this->session->set_flashdata("success", "Ticket created successfully");
+			redirect('/tickets/criar');
+		}
+		else{
+			$this->session->set_flashdata("danger", "You must fill all fields to open a ticket");
+			redirect('/tickets/criar');
+		}		
 	}
 
 	public function aceitar($ticketId)
