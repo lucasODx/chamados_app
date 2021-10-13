@@ -82,16 +82,13 @@
                 'cols' => '80'
             ));
             echo '<input 
-                    style=
-                        "float: right; 
-                        margin-top: 15px;" 
                     type="file"
                     action="/tickets/responder/" 
                     name="pictureSend" 
                     size="20" />';
 
             echo form_button(array(
-                "class" => "btn btn-primary",
+                "class" => "btn btn-primary button_update",
                 "type" => "submit",
                 "content" => "Atualizar chamado"
             ));
@@ -99,6 +96,15 @@
         }
         ?>
     </div>
+
+    <style>
+        .button_update {
+            float: right;
+        }
+        #textBox{
+            margin-bottom: 20px;
+        }
+    </style>
 </body>
 
 </html>

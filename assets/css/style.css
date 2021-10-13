@@ -25,7 +25,7 @@ body {
 .container h1 {
     color: rgb(0, 121, 219);
     font-family: 'Roboto Condensed';
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 30px;
 }
 
@@ -41,3 +41,4 @@ body {
 .btn-primary {
     margin-top: 10px;
 }
+

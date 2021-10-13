@@ -6,6 +6,7 @@ class Chamados_Model extends CI_Model
     {
         if ($role === 'cliente') {
             $this->db->where("creator", $userId);
+            $this->db->order_by('status', 'DESC');
             $tickets = $this->db->get("ticket")->result_array();
 
             $data[0] = $role;
@@ -13,6 +14,7 @@ class Chamados_Model extends CI_Model
         } else {
             $this->db->where("support", $userId);
             $this->db->where("status", 'analisando');
+            $this->db->order_by('status', 'DESC');
             $acceptedTickets = $this->db->get("ticket")->result_array();
 
             $this->db->where("status like 'aberto'");

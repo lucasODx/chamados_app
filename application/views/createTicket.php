@@ -11,41 +11,44 @@
 </head>
 
 <body>
-    <?php
-    echo form_open("/tickets/criarTicket");
+    <div class="container">
+        <h1>Create your ticket</h1>
+        <?php
+        echo form_open("/tickets/criarTicket");
 
-    echo form_label("Title", "title");
-    echo form_input(array(
-        "name" => "title",
-        "id" => "title",
-        "class" => "form-control",
-        "maxlength" => "100"
+        echo form_label("Title", "title");
+        echo form_input(array(
+            "name" => "title",
+            "id" => "title",
+            "class" => "form-control",
+            "maxlength" => "100"
 
-    ));
+        ));
 
-    echo form_label("Description", "description");
-    echo form_textarea(array(
-        "name" => "description",
-        "id" => "description",
-        "class" => "form-control",
-        'rows'  => '5',
-        'cols' => '60'
-    ));
+        echo form_label("Description", "description");
+        echo form_textarea(array(
+            "name" => "description",
+            "id" => "description",
+            "class" => "form-control",
+            'rows'  => '5',
+            'cols' => '60'
+        ));
 
-    echo form_button(array(
-        "class" => "btn btn-primary",
-        "type" => "submit",
-        "content" => "Criar"
-    ));
+        echo form_button(array(
+            "class" => "btn btn-primary",
+            "type" => "submit",
+            "content" => "Criar"
+        ));
 
-    echo form_close();
-    ?>
-    <?php if ($this->session->flashdata("success")) : ?>
-        <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
-        <?
-            redirect('/tickets/chamados');
+        echo form_close();
         ?>
-    <?php endif ?>
+        <?php if ($this->session->flashdata("success")) : ?>
+            <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+            <?
+            redirect('/tickets/chamados');
+            ?>
+        <?php endif ?>
+    </div>
 </body>
 
 </html>

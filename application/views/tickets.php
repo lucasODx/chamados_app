@@ -12,13 +12,13 @@
     <div class="container">
         <?php if ($data[0] == 'cliente') : ?>
             <?php
-                echo form_open('/tickets/criar');
-                echo form_button(array(
-                    "class" => "btn btn-primary",
-                    "type" => "submit",
-                    "content" => "Criar ticket"
-                ));
-                echo form_close();
+            echo form_open('/tickets/criar');
+            echo form_button(array(
+                "class" => "btn btn-primary button_create",
+                "type" => "submit",
+                "content" => "Criar ticket"
+            ));
+            echo form_close();
             ?>
 
             <h1>Your tickets</h1>
@@ -132,6 +132,11 @@
             </table>
         <?php endif ?>
     </div>
+    <style>
+        .button_create {
+            float: right;
+        }
+    </style>
 </body>
 
 </html>
