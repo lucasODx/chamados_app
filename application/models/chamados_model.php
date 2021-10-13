@@ -91,6 +91,7 @@ class Chamados_Model extends CI_Model
     public function readAnswers($ticketId)
     {
         $this->db->where('ticket_id', $ticketId);
+        $this->db->order_by('id', 'DESC');
         $answersFromTicket = $this->db->get('ticket_answers')->result_array();
         return $answersFromTicket;
     }
