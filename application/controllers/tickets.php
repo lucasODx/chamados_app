@@ -31,10 +31,11 @@ class Tickets extends CI_Controller
 		$this->load->model("chamados_model");
 		$title = $this->input->post("title");
 		$description = $this->input->post("description");
+
+
 		$this->chamados_model->createTicket($title, $description, $userId);
 
 		$this->session->set_flashdata("success", "Ticket created successfully");
-		
 		redirect('/tickets/criar');
 	}
 

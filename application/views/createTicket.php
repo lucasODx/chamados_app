@@ -7,48 +7,68 @@
     <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Create your ticket</h1>
-        <?php
-        echo form_open("/tickets/criarTicket");
+    <?php if ($_SESSION['User logged successfully']) : ?>
+        <div class="container">
+            <div style="width: 100%;">
 
-        echo form_label("Title", "title");
-        echo form_input(array(
-            "name" => "title",
-            "id" => "title",
-            "class" => "form-control",
-            "maxlength" => "100"
+                <div style="float: right; margin-right: 30px; margin-top: -30px">
+                    <?php
+                    echo form_open('/tickets/chamados');
+                    echo form_button(array(
+                        "class" => "btn btn-primary",
+                        "type" => "submit",
+                        "content" => "Voltar"
+                    ));
+                    echo form_close();
+                    ?>
+                </div>
+                <h1 style="text-align: center;">Create your ticket</h1>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; font-weight: 600;">
+                <?php
+                echo form_open("/tickets/criarTicket");
 
-        ));
+                echo form_label("Title", "title");
+                echo form_input(array(
+                    "name" => "title",
+                    "id" => "title",
+                    "class" => "form-control",
+                    "maxlength" => "100"
 
-        echo form_label("Description", "description");
-        echo form_textarea(array(
-            "name" => "description",
-            "id" => "description",
-            "class" => "form-control",
-            'rows'  => '5',
-            'cols' => '60'
-        ));
+                ));
 
-        echo form_button(array(
-            "class" => "btn btn-primary",
-            "type" => "submit",
-            "content" => "Criar"
-        ));
+                echo form_label("Description", "description");
+                echo form_textarea(array(
+                    "name" => "description",
+                    "id" => "description",
+                    "class" => "form-control",
+                    'rows'  => '5',
+                    'cols' => '60'
+                ));
 
-        echo form_close();
-        ?>
-        <?php if ($this->session->flashdata("success")) : ?>
-            <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
-            <?
-            redirect('/tickets/chamados');
-            ?>
-        <?php endif ?>
-    </div>
+                echo form_button(array(
+                    "class" => "btn btn-primary",
+                    "type" => "submit",
+                    "content" => "Criar"
+                ));
+
+                echo form_close();
+                ?>
+            </div>
+            <?php if ($this->session->flashdata("success")) : ?>
+                <p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+                <?
+                redirect('/tickets/chamados');
+                ?>
+            <?php endif ?>
+        </div>
+    <?php else : ?>
+        <h2>You must be logged to access this feature</h2>
+    <?php endif; ?>
 </body>
 
 </html>

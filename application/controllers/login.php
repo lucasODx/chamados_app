@@ -18,4 +18,10 @@ class Login extends CI_Controller
 		}
 		redirect('/');
 	}
+
+	public function deslogar()
+	{
+		session_destroy();
+		redirect('/');
+	}
 }

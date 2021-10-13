@@ -10,25 +10,36 @@
 </head>
 
 <body>
-    <div>
-        <?php foreach ($data as $dt) : ?>
-            <h2>Chamado n°<?= $dt['id'] ?>: <?= $dt['title'] ?>
-            <?php endforeach ?>
-    </div>
+    <?php if ($_SESSION['User logged successfully']) : ?>
+        <div style="width: 100%;">
+            <div style="float: right; margin-right: 30px; margin-top: -30px">
+                <?php
+                echo form_open('/tickets/chamados');
+                echo form_button(array(
+                    "class" => "btn btn-primary button_create",
+                    "type" => "submit",
+                    "content" => "Voltar"
+                ));
+                echo form_close();
+                ?>
+            </div>
+            <?php foreach ($data as $dt) : ?>
+                <h2 style="text-align: center; color: #1a1a1a;">Chamado n°<?= $dt['id'] ?>: <?= $dt['title'] ?>
+                <?php endforeach ?>
+        </div>
 
-    <div id="chatbox" style="
+        <div id="chatbox" style="
                 display:flex;
                 flex-direction:column;
-                margin-top: 30px;
-                margin-bottom: 10px;
+                margin-bottom: 2px;
                 border-radius: 10px;
                 background-color: #f2f2f2; 
                 width: 630px;
                 height: 320px; 
                 overflow-y: scroll; 
                 overflow-x: hidden;">
-        <?php foreach ($answers as $ans) : ?>
-            <div style="
+            <?php foreach ($answers as $ans) : ?>
+                <div style="
                 display: flex;
                 flex-direction: column;
                 <?php
@@ -36,9 +47,9 @@
                     'align-items: flex-end;' :
                     'align-items: flex-start;');
                 ?>">
-                <div>
-                    <?php if ($ans['type'] == 'picture') : ?>
-                        <div><img style="
+                    <div>
+                        <?php if ($ans['type'] == 'picture') : ?>
+                            <div><img style="
                             width: 200px; 
                             height: auto;
                             margin: 5px;
@@ -46,11 +57,11 @@
                             border: 1px solid #E7E5F3;
                             border-radius: 10px;
                             background-color: white;" src="<?= base_url('assets/images/' . $ans['answers']) ?>" />
-                        </div>
+                            </div>
 
-                    <?php else : ?>
-                        <div>
-                            <p style="
+                        <?php else : ?>
+                            <div>
+                                <p style="
                             <?php
                             echo (($userId == $ans['answer_user']) ?
                                 'color: #f5f5f5; background-color: #008ede;' :
@@ -61,50 +72,54 @@
                             margin: 10px;
                             padding: 5px;
                             border-radius: 10px;">
-                                <?= $ans['answers'] ?>
-                            </p>
-                        </div>
-                    <?php endif; ?>
+                                    <?= $ans['answers'] ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
-        <?php endforeach ?>
-    </div>
-    <div>
-        <?php
-        if ($data[0]['status'] !== 'fechado') {
+            <?php endforeach ?>
+        </div>
+        <div>
+            <?php
+            if ($data[0]['status'] !== 'fechado') {
 
-            echo form_open_multipart("/tickets/responder/" . $dt['id']);
-            echo form_textarea(array(
-                "name" => "textBox",
-                "id" => "textBox",
-                "class" => "form-control",
-                'rows'  => '5',
-                'cols' => '80'
-            ));
-            echo '<input 
+                echo form_open_multipart("/tickets/responder/" . $dt['id']);
+                echo form_textarea(array(
+                    "name" => "textBox",
+                    "id" => "textBox",
+                    "class" => "form-control",
+                    'rows'  => '5',
+                    'cols' => '80'
+                ));
+                echo '<input 
                     type="file"
                     action="/tickets/responder/" 
                     name="pictureSend" 
                     size="20" />';
 
-            echo form_button(array(
-                "class" => "btn btn-primary button_update",
-                "type" => "submit",
-                "content" => "Atualizar chamado"
-            ));
-            echo form_close();
-        }
-        ?>
-    </div>
+                echo form_button(array(
+                    "class" => "btn btn-primary button_update",
+                    "type" => "submit",
+                    "content" => "Atualizar chamado"
+                ));
+                echo form_close();
+            }
+            ?>
+        </div>
 
-    <style>
-        .button_update {
-            float: right;
-        }
-        #textBox{
-            margin-bottom: 20px;
-        }
-    </style>
+        <style>
+            .button_update {
+                float: right;
+            }
+
+            #textBox {
+                margin-bottom: 20px;
+            }
+        </style>
+    <?php else : ?>
+        <h2>You must be logged to access this feature</h2>
+    <?php endif; ?>
 </body>
 
 </html>
